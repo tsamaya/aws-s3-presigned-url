@@ -1,5 +1,5 @@
 {
-  "name": "aws-resources",
+  "name": "infra",
   "version": "0.1.0",
   "bin": {
     "aws-resources": "bin/aws-resources.js"
@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
+    "lint:fix": "eslint . --ext ts --fix"
   },
   "devDependencies": {
     "@aws-cdk/assertions": "1.134.0",

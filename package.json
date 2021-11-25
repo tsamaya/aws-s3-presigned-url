@@ -1,0 +1,17 @@
+{
+  "name": "aws-s3-presigned-url",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:tsamaya/aws-s3-presigned-url.git",
+  "author": "Arnaud Ferrand <arferrand@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "lerna run start --stream"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}

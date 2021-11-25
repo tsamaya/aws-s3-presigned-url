@@ -5,7 +5,7 @@
   "author": "Arnaud Ferrand",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon server"
+    "start": "nodemon server"
   },
   "dependencies": {
     "aws-sdk": "^2.1007.0",
