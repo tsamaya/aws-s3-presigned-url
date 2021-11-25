@@ -29,7 +29,7 @@ const FileUpload = ({ onSubmit, reset }) => {
           <p>Size in bytes: {selectedFile.size}</p>
           <p>
             lastModifiedDate:{' '}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
+            {selectedFile.lastModifiedDate?.toLocaleDateString()}
           </p>
         </div>
       ) : (

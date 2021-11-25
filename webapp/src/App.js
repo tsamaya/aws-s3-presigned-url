@@ -7,18 +7,20 @@ import FileUpload from './FileUpload';
 const App = () => {
   const [error, setError] = useState({});
   const [status, setStatus] = useState({});
+  const [url, setUrl] = useState({});
 
   const handleReset = () => {
     setError({});
     setStatus({});
+    setUrl({});
   };
 
   const handleSubmitforPUT = async ({ file }) => {
     handleReset();
-    console.log(file);
+    console.log(`Selected file ${file}`);
     let reader = new FileReader();
     reader.onload = async (e) => {
-      console.log('length: ', e.target.result.includes('data:image/jpeg'));
+      console.log('--reader.onLoad()');
       const image = e.target.result;
       let binary = atob(image.split(',')[1]);
       let array = [];
@@ -34,21 +36,20 @@ const App = () => {
         );
         console.log('data: ', presignedPutUrl);
         console.log('URL', presignedPutUrl.url);
-        // console.log('--axios.put');
-        // const axiosResponse = await axios.put(presignedPutUrl.url, blobData, {
-        //   headers: {
-        //     'Content-Type': file.type,
-        //   },
-        // });
-        // console.info(axiosResponse.status);
-        // console.info(axiosResponse.statusText);
-        // setStatus(axiosResponse);
+
         console.log('--fetch.put');
         const result = await fetch(presignedPutUrl.url, {
           method: 'PUT',
           body: blobData,
         });
         setStatus(result);
+
+        console.log('--s3.getSignedUrl getObject');
+        const { data: downloadURL } = await axios.get(
+          `http://localhost:3001/geturl?key=${file.name}`
+        );
+        console.log(`URL to Download file ${downloadURL.url}`);
+        setUrl(downloadURL);
       } catch (error) {
         setError(error);
         console.error(error);
@@ -58,13 +59,18 @@ const App = () => {
   };
   const handleSubmitfoPOST = async ({ file }) => {
     handleReset();
-    console.log(file);
+    console.log(`Selected file ${file}`);
 
     try {
+      console.log('--s3.createPresignedPost');
       const { data: presignedPostUrl } = await axios.get(
         `http://localhost:3001/getuploadurl?key=${file.name}&type=${file.type}`
       );
-      console.log(presignedPostUrl);
+      console.log('data: ', presignedPostUrl);
+      console.log('URL', presignedPostUrl.url);
+
+      const key = presignedPostUrl.fields?.key;
+
       const formData = new FormData();
       formData.append('Content-Type', file.type);
       Object.entries(presignedPostUrl.fields).forEach(([k, v]) => {
@@ -78,6 +84,12 @@ const App = () => {
       console.info(response.status);
       console.info(response.statusText);
       setStatus(response);
+      console.log('--fetch.getUrl');
+      const { data: downloadURL } = await axios.get(
+        `http://localhost:3001/geturl?key=${key}`
+      );
+      console.log(`URL to Download file ${downloadURL.url}`);
+      setUrl(downloadURL);
     } catch (error) {
       setError(error);
       console.error(error);
@@ -97,6 +109,11 @@ const App = () => {
           <h1 style={{ color: 'green' }}>Response</h1>
           <h4>Status: {status.status}</h4>
           <h4>StatusText: {status.statusText}</h4>
+        </div>
+      )}
+      {url && url.url && (
+        <div>
+          <a href={url.url}>{url.url}</a>
         </div>
       )}
       {error && error.message && (

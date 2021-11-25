@@ -4,9 +4,9 @@ const AWS = require('aws-sdk');
 const cors = require('cors');
 
 const s3 = new AWS.S3({
-  // region: 'eu-west-1', // Put your aws region here
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.S3_REGION,
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
 
 const app = express();
@@ -55,6 +55,7 @@ app.get('/getuploadurl', (req, res) => {
   const filePath = generateId();
   const params = {
     Bucket: process.env.BUCKET_NAME,
+    // Fields: { key: filePath, acl: 'public-read' },
     Fields: { key: filePath, acl: 'private' },
     Conditions: [
       // content length restrictions: 0-1MB]
@@ -71,7 +72,8 @@ app.get('/getuploadurl', (req, res) => {
       console.error('Failed', err);
       res.status(500).send(err);
     }
-    const result = { ...data, filePath };
+    const result = data;
+    // const result = { ...data, filePath };
     console.info(result);
     res.send(result);
   });
@@ -81,7 +83,7 @@ app.get('/geturl', (req, res) => {
   const presignedS3Url = s3.getSignedUrl('getObject', {
     Bucket: process.env.BUCKET_NAME,
     Key: req.query.key,
-    Expires: 2 * 24 * 60 * 60,
+    Expires: req.query.expires || 2 * 24 * 60 * 60,
   });
   console.info(presignedS3Url);
   res.send({ url: presignedS3Url });

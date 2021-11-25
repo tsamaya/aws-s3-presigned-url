@@ -1,1 +1,8 @@
-## script
+### server
+
+```
+S3_ACCESS_KEY_ID=XXXXX
+S3_SECRET_ACCESS_KEY=XXXX
+S3_REGION=xxxx
+BUCKET_NAME=xxxx
+```
