@@ -3,11 +3,22 @@ const express = require('express');
 const AWS = require('aws-sdk');
 const cors = require('cors');
 
+if (!process.env.S3_REGION)
+  throw new Error('Missing environment variable `S3_REGION`');
+if (!process.env.S3_ACCESS_KEY_ID)
+  throw new Error('Missing environment variable `S3_ACCESS_KEY_ID`');
+if (!process.env.S3_SECRET_ACCESS_KEY)
+  throw new Error('Missing environment variable `S3_SECRET_ACCESS_KEY`');
+if (!process.env.S3_BUCKET_NAME)
+  throw new Error('Missing environment variable `S3_BUCKET_NAME`');
+
 const s3 = new AWS.S3({
   region: process.env.S3_REGION,
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
+
+const BUCKET_NAME = process.env.S3_BUCKET_NAME;
 
 const app = express();
 const port = 3001;

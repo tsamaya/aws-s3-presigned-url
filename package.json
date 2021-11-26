@@ -5,10 +5,25 @@
   "repository": "git@github.com:tsamaya/aws-s3-presigned-url.git",
   "author": "Arnaud Ferrand <arferrand@gmail.com>",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/ts-jest",
+      "**/ts-jest/**",
+      "**/ts-node",
+      "**/ts-node/**",
+      "**/jest",
+      "**/jest/**",
+      "**/@types/jest",
+      "**/@types/jest/**",
+      "**/@types/node",
+      "**/@types/node/**"
+    ]
+  },
   "scripts": {
+    "setup": "lerna run setup --stream",
     "start": "lerna run start --stream"
   },
   "dependencies": {

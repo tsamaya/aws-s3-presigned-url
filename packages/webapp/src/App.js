@@ -98,15 +98,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Using PUT</h1>
+      <h1>Upload file to S3</h1>
+      <h2>Using PUT</h2>
       <FileUpload onSubmit={handleSubmitforPUT} reset={handleReset} />
       <hr />
-      <h1>Using POST</h1>
+      <h2>Using POST</h2>
       <FileUpload onSubmit={handleSubmitfoPOST} reset={handleReset} />
       <hr />
       {status && status.status && (
         <div>
-          <h1 style={{ color: 'green' }}>Response</h1>
+          <h2 style={{ color: 'green' }}>Response</h2>
           <h4>Status: {status.status}</h4>
           <h4>StatusText: {status.statusText}</h4>
         </div>
@@ -118,7 +119,7 @@ const App = () => {
       )}
       {error && error.message && (
         <div>
-          <h1 style={{ color: 'red' }}>Error</h1>
+          <h2 style={{ color: 'red' }}>Error</h2>
           <h4>Message: {error.message}</h4>
         </div>
       )}

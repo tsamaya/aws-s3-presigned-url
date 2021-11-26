@@ -5,6 +5,7 @@
     "aws-resources": "bin/aws-resources.js"
   },
   "scripts": {
+    "setup": "yarn build && yarn cdk deploy",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -30,6 +31,7 @@
   "dependencies": {
     "@aws-cdk/aws-s3": "^1.134.0",
     "@aws-cdk/core": "1.134.0",
+    "dotenv": "^10.0.0",
     "source-map-support": "^0.5.16"
   }
 }
