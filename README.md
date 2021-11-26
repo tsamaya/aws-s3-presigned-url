@@ -22,7 +22,7 @@ edit with your values
 DEFAULT_ACCOUNT=xxxxxxxxx
 DEFAULT_REGION=eu-west-1
 DEPLOY_STAGE=dev
-STACK_PREFIX=PresignedURL
+STACK_PREFIX=presigned-url
 ```
 
 Build and deploy the infrastructure
@@ -44,7 +44,9 @@ edit with your values
 ```
 S3_ACCESS_KEY_ID=XXXXX
 S3_SECRET_ACCESS_KEY=XXXX
-S3_REGION=xxxx
+S3_REGION=eu-west-1
+
+# from the infra setup
 S3_BUCKET_NAME=xxxx
 ```
 
