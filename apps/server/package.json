@@ -1,0 +1,42 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "API",
+  "homepage": "https://github.com/tsamaya/aws-s3-presigned-url#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamaya/aws-s3-presigned-url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsamaya/aws-s3-presigned-url/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "dev": "nodemon dist/index.js",
+    "start": "pnpm build && node dist/index.js",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:dev": "vitest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.504.0",
+    "@aws-sdk/s3-presigned-post": "^3.504.0",
+    "@aws-sdk/s3-request-presigner": "^3.504.0",
+    "@fastify/cors": "^9.0.1",
+    "dotenv": "^16.4.1",
+    "fastify": "^4.26.0",
+    "pino": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^1.2.2",
+    "@vitest/ui": "^1.2.2",
+    "nodemon": "^3.0.3",
+    "supertest": "^6.3.4",
+    "typescript": "~5.3.3",
+    "vitest": "^1.2.2"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "root",
+  "private": true,
+  "description": "This repository demontrates how to POST, PUT and GET file from an AWS S3 Bucket with ACL private to prevent the file to be downloaded without using your application.  ",
+  "author": "Arnaud Ferrand",
+  "homepage": "https://github.com/tsamaya/aws-s3-presigned-url#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamaya/aws-s3-presigned-url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsamaya/aws-s3-presigned-url/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "deploy:infra": "lerna run deploy --stream",
+    "start": "lerna run start --stream",
+    "test": "lerna run test --stream"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.0.2"
+  }
+}
