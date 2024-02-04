@@ -1,8 +1,32 @@
-import { afterAll, describe, expect, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import supertest from 'supertest';
 import app from './app';
 
 describe('app', async () => {
+  let accessKeyId: string | undefined = '';
+  let secretAccessKey: string | undefined = '';
+  let region: string | undefined = '';
+  let bucket: string | undefined = '';
+
+  beforeAll(async () => {
+    accessKeyId = process.env.S3_ACCESS_KEY_ID;
+    secretAccessKey = process.env.S3_SECRET_ACCESS_KEY;
+    region = process.env.S3_REGION;
+    bucket = process.env.S3_BUCKET_NAME;
+
+    process.env.S3_ACCESS_KEY_ID = '123';
+    process.env.S3_SECRET_ACCESS_KEY = '123';
+    process.env.S3_REGION = 'eu-west-1';
+    process.env.S3_BUCKET_NAME = 'bucket';
+  });
+
+  afterAll(async () => {
+    process.env.S3_ACCESS_KEY_ID = accessKeyId;
+    process.env.S3_SECRET_ACCESS_KEY = secretAccessKey;
+    process.env.S3_REGION = secretAccessKey;
+    process.env.S3_BUCKET_NAME = bucket;
+  });
+
   afterAll(async () => {
     await app.close();
   });
