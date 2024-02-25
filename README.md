@@ -4,7 +4,7 @@ This repository demontrates how to POST, PUT and GET file from an AWS S3 Bucket 
 
 ## Prerequisite
 
-- Node 18 (via nvm: `nvm use`)
+- Node 20 (via nvm: `nvm use`)
 
 - pnpm (install via `corepack enable`)
 

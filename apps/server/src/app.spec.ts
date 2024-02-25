@@ -37,7 +37,7 @@ describe('app', async () => {
     //   console.log(JSON.stringify(response));
     expect(response).toBeDefined();
     expect(response.text).toBeDefined();
-    expect(response.text).toEqual('Server');
+    expect(response.text).toEqual('Nothing here!');
   });
 
   test('server ping', async () => {
@@ -46,7 +46,7 @@ describe('app', async () => {
     // console.log(JSON.stringify(response));
     expect(response).toBeDefined();
     expect(response.text).toBeDefined();
-    expect(JSON.parse(response.text)).toEqual({ pong: 'it worked!' });
+    expect(JSON.parse(response.text)).toEqual({ pong: 'It worked!' });
   });
 
   test('missing param filename on /download', async () => {
