@@ -23,11 +23,11 @@ app.register(cors);
 //   Fastify({});
 
 app.get('/', async (request, reply) => {
-  return 'Server';
+  return 'Nothing here!';
 });
 
 app.get('/ping', async (request, reply) => {
-  return { pong: 'it worked!' };
+  return { pong: 'It worked!' };
 });
 
 app.get('/uploadPUT', async (request, reply) => {
