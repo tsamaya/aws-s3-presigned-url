@@ -24,7 +24,7 @@ pnpm install
 pnpm test
 ```
 
-### Setup: provision infrastructure with AWS CDK
+## Setup: provision infrastructure with AWS CDK
 
 ```bash
 touch apps/infra/.env
@@ -78,6 +78,8 @@ pnpx cdk bootstrap aws://zzzxxxuuuiii/eu-west-1 --profile tsamaya
 #  ✅  Environment aws://zzzxxxuuuiii/eu-west-1 bootstrapped.
 ```
 
+### deploy
+
 Build and deploy the infrastructure
 
 ```bash
@@ -104,7 +106,7 @@ pnpm run deploy:infra
 
 get the bucket name from the resources of the CloudFormation execution or the S3 managment console
 
-### server
+## server
 
 ```bash
 touch apps/server/.env
@@ -123,7 +125,7 @@ S3_BUCKET_NAME=xxxx
 # S3_BUCKET_NAME=presignedurldevfiles183189EF
 ```
 
-### Try it
+## Try it
 
 ```bash
 pnpm start
